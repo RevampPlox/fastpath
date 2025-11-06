@@ -1,0 +1,27 @@
+target-version = 'py313'
+line-length = 79
+
+[format]
+quote-style = 'single'
+
+[lint]
+select = ['ALL']
+ignore = [
+    'D100',
+    'D101',
+    'D102',
+    'D103',
+    'D104',
+    'D105',
+    'D106',
+    'D107',
+    'D200',
+    'D205',
+    'D212',
+    'D400',
+    'D401',
+    'D415',
+    'Q000',
+    'Q001',
+    'Q002',
+]
