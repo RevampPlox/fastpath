@@ -1,3 +1,4 @@
+from typing import Annotated
 from uuid import UUID
 
 from fastapi import Depends, HTTPException, status
@@ -9,7 +10,7 @@ from app.schemas.path_schema import PathCreate, PathResponse, PathResponseList
 class PathService:
     def __init__(
         self,
-        repository: PathRepository = Depends(),
+        repository: Annotated[PathRepository, Depends()],
     ) -> None:
         self.repository = repository
 

@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Annotated, Any
 from uuid import UUID
 
 from fastapi import Depends
@@ -14,7 +14,7 @@ from app.models.path_model import PathModel
 class PathRepository:
     def __init__(
         self,
-        db_session: AsyncSession = Depends(get_session),
+        db_session: Annotated[AsyncSession, Depends(get_session)],
     ) -> None:
         self.db_session = db_session
 
