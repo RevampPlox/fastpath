@@ -8,3 +8,4 @@ class Settings(BaseSettings):
         extra='ignore',
     )
     DB_URL: str
+    DEBUG: bool = True

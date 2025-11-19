@@ -11,7 +11,7 @@ PathServices = Annotated[PathService, Depends()]
 
 router = APIRouter(
     prefix='/api/v1/paths',
-    tags=['path'],
+    tags=['paths'],
 )
 
 
