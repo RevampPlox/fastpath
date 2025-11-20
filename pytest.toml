@@ -1,0 +1,18 @@
+[pytest]
+minversion = '9.0'
+console_output_style = 'times'
+addopts = [
+    '-v', # Increase verbosity
+    '-x', # Exit instantly on first error or failed test
+    '-s', # Shortcut for --capture=no
+    '--cov=app'
+]
+strict = true
+log_cli = true
+log_cli_level = 'INFO'
+testpaths = [
+    'app/tests/'
+]
+filterwarnings = [
+    'ignore::DeprecationWarning:testcontainers.*'
+]

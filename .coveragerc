@@ -1,0 +1,6 @@
+[run]
+concurrency = greenlet
+
+[report]
+skip_covered = True
+skip_empty = True

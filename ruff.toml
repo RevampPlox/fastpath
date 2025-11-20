@@ -2,6 +2,7 @@ target-version = 'py313'
 line-length = 79
 exclude = [
     'app/migrations/',
+    '.coveragerc'
 ]
 
 [format]
@@ -29,4 +30,5 @@ ignore = [
     'Q000',
     'Q001',
     'Q002',
+    'S101',
 ]
