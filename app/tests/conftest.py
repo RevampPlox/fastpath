@@ -18,7 +18,7 @@ from app.models.table_model import TableModel
 
 @pytest_asyncio.fixture(scope='session')
 def engine() -> Generator[AsyncEngine]:
-    with PostgresContainer('postgres:17', driver='psycopg') as postgres:
+    with PostgresContainer('postgres:17-alpine', driver='psycopg') as postgres:
         yield create_async_engine(postgres.get_connection_url())
 
 
