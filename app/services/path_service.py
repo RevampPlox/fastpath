@@ -19,7 +19,7 @@ class PathService:
         db_paths = await self.repository.search_all()
         return PathResponseList(
             data=[PathResponse.model_validate(path) for path in db_paths]
-    )
+        )
 
     async def get_path_by_id(self, path_id: UUID) -> PathResponse:
         db_path = await self.repository.search(path_id)
