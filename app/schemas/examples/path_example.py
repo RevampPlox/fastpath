@@ -1,6 +1,6 @@
-from typing import Any
+from fastapi.openapi.models import Example
 
-PathExample: dict[str, dict[str, Any]] = {
+PathExample: dict[str, Example] = {
     'normal': {
         'summary': 'A normal example',
         'description': 'A **normal** item works correctly.',

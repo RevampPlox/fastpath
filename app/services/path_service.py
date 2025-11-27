@@ -16,16 +16,20 @@ class PathService:
         self.repository = repository
 
     async def get_all_paths(self) -> PathResponseList:
-        return PathResponseList(data=await self.repository.search_all())
+        db_paths = await self.repository.search_all()
+        return PathResponseList(
+            data=[PathResponse.model_validate(path) for path in db_paths]
+    )
 
     async def get_path_by_id(self, path_id: UUID) -> PathResponse:
-        path = await self.repository.search(path_id)
-        if path is None:
+        db_path = await self.repository.search(path_id)
+        if db_path is None:
             raise NotFoundError
-        return path
+        return PathResponse.model_validate(db_path)
 
     async def create_path(self, path: PathCreate) -> PathResponse:
-        return await self.repository.create(path.model_dump())
+        db_path = await self.repository.create(path.model_dump())
+        return PathResponse.model_validate(db_path)
 
     async def delete_path(self, path_id: UUID) -> None:
         path = await self.repository.search(path_id)

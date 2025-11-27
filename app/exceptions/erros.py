@@ -1,3 +1,4 @@
+from functools import lru_cache
 from http import HTTPStatus
 from typing import Any, Literal
 
@@ -5,11 +6,9 @@ from pydantic import BaseModel, create_model
 
 
 class BaseError(Exception):
-    __schema: BaseModel | None = None
-
     def __init__(
         self,
-        message: dict,
+        message: str | dict,
         status_code: int = HTTPStatus.INTERNAL_SERVER_ERROR,
     ) -> None:
         super().__init__(message)
@@ -17,18 +16,13 @@ class BaseError(Exception):
         self.status_code = status_code
 
     @classmethod
-    def schema(cls) -> BaseModel:
-        if cls.__schema is not None:
-            return cls.__schema
-
-        model = create_model(
+    @lru_cache
+    def schema(cls) -> type[BaseModel]:
+        return create_model(
             cls.__name__,
-            error=(Literal[cls.__name__]),
+            error=(Literal[cls.__name__], ...),
             detail=(str | list[dict[str, Any]], ...),
         )
-        cls.__schema = model
-
-        return cls.__schema
 
 
 class NotFoundError(BaseError):

@@ -1,10 +1,10 @@
 from collections.abc import AsyncGenerator, Generator
+from typing import Any
 
 import pytest
 import pytest_asyncio
 from fastapi.testclient import TestClient
 from sqlalchemy.ext.asyncio import (
-    AsyncConnection,
     AsyncEngine,
     AsyncSession,
     create_async_engine,
@@ -16,14 +16,14 @@ from app.main import app
 from app.models.table_model import TableModel
 
 
-@pytest_asyncio.fixture(scope='session')
+@pytest.fixture(scope='session')
 def engine() -> Generator[AsyncEngine]:
     with PostgresContainer('postgres:17-alpine', driver='psycopg') as postgres:
         yield create_async_engine(postgres.get_connection_url())
 
 
 @pytest_asyncio.fixture
-async def session(engine: AsyncEngine) -> AsyncGenerator[AsyncConnection]:
+async def session(engine: AsyncEngine) -> AsyncGenerator[AsyncSession, Any]:
     async with engine.begin() as conn:
         await conn.run_sync(TableModel.metadata.create_all)
 

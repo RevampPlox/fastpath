@@ -1,3 +1,4 @@
+from collections.abc import Sequence
 from typing import Annotated, Any
 from uuid import UUID
 
@@ -46,7 +47,7 @@ class PathRepository:
 
         return new_path
 
-    async def search(self, path_id: UUID) -> PathModel:
+    async def search(self, path_id: UUID) -> PathModel | None:
         result = await self.db_session.execute(
             select(PathModel)
             .join(PathModel.pickup)
@@ -58,7 +59,7 @@ class PathRepository:
         )
         return result.scalar_one_or_none()
 
-    async def search_all(self) -> list[PathModel]:
+    async def search_all(self) -> Sequence[PathModel]:
         result = await self.db_session.execute(
             select(PathModel)
             .join(PathModel.pickup)

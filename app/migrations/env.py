@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from alembic import context
 
-from app.core.settings import Settings
+from app.core.settings import settings
 from app.models.table_model import TableModel
 from app.models.coordinates_model import CoordinatesModel
 from app.models.path_model import PathModel
@@ -32,7 +32,7 @@ target_metadata = TableModel.metadata
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-config.set_main_option('sqlalchemy.url', Settings().DB_URL)
+config.set_main_option('sqlalchemy.url', settings.DB_URL)
 
 
 def run_migrations_offline() -> None:

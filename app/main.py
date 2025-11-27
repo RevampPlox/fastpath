@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.v1.routers import health_check_router, path_router
-from app.core.settings import Settings
+from app.core.settings import settings
 from app.exceptions.exception_handler import add_exceptions_handler
 
 tags_metadata = [
@@ -31,9 +31,9 @@ app = FastAPI(
         'identifier': 'MIT',
         'url': 'https://opensource.org/license/mit',
     },
-    docs_url=None if Settings().DEBUG is None else '/api/v1/docs',
-    redoc_url=None if Settings().DEBUG is None else '/api/v1/redoc',
-    openapi_url=None if Settings().DEBUG is None else '/api/v1/openapi.json',
+    docs_url=None if not settings.DEBUG else '/api/v1/docs',
+    redoc_url=None if not settings.DEBUG else '/api/v1/redoc',
+    openapi_url=None if not settings.DEBUG else '/api/v1/openapi.json',
     openapi_tags=tags_metadata,
 )
 
