@@ -34,7 +34,7 @@ pre_format = "ruff check --fix"
 format = { cmd="ruff format", help="format the code"}
 
 test = { cmd="pytest", help="run all tests"}
-post_test = "coverage html"
+post_test = "coverage xml"
 
 cover = { cmd="coverage report", help="show code coverage"}
 
