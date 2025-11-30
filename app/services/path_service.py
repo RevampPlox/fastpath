@@ -5,6 +5,7 @@ from fastapi import Depends
 
 from app.exceptions.erros import NotFoundError
 from app.repositories.path_repository import PathRepository
+from app.schemas.filters_params_schema import SortEnum
 from app.schemas.path_schema import PathCreate, PathResponse, PathResponseList
 
 
@@ -15,8 +16,16 @@ class PathService:
     ) -> None:
         self.repository = repository
 
-    async def get_all_paths(self) -> PathResponseList:
-        db_paths = await self.repository.search_all()
+    async def get_all_paths(
+        self,
+        skip: int,
+        limit: int,
+        order_by: str,
+        arranging: SortEnum,
+    ) -> PathResponseList:
+        db_paths = await self.repository.search_all(
+            skip, limit, order_by, arranging
+        )
         return PathResponseList(
             data=[PathResponse.model_validate(path) for path in db_paths]
         )

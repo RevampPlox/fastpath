@@ -2,10 +2,13 @@ from http import HTTPStatus
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Body, Depends
+from fastapi import APIRouter, Body, Depends, Query
 
 from app.exceptions.erros import ContentError, NotFoundError
 from app.schemas.examples.path_example import PathExample
+from app.schemas.filters_params_schema import (
+    PaginationSortingFilters as Filters,
+)
 from app.schemas.path_schema import PathCreate, PathResponse, PathResponseList
 from app.services.path_service import PathService
 
@@ -26,8 +29,14 @@ router = APIRouter(
 @router.get('/', status_code=HTTPStatus.OK)
 async def get_paths(
     service: PathServices,
+    filters: Annotated[Filters, Query()],
 ) -> PathResponseList:
-    return await service.get_all_paths()
+    return await service.get_all_paths(
+        filters.skip,
+        filters.limit,
+        filters.order_by,
+        filters.arranging,
+    )
 
 
 @router.get(
