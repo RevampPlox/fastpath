@@ -189,3 +189,4 @@ cython_debug/
 
 # Project suff
 database.db
+osrm_data/

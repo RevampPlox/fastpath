@@ -10,11 +10,12 @@ class __Settings(BaseSettings):
         env_file_encoding='utf-8',
         extra='ignore',
     )
+    DEBUG: bool = True
     DB_URL: str = os.getenv(
         'DB_URL',
         'postgresql+psycopg://user:password@127.0.0.1:5432/database',
     )
-    DEBUG: bool = True
+    OSRM_URL: str = os.getenv('OSRM_URL', 'http://localhost:5000/')
 
 
 @lru_cache

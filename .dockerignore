@@ -206,3 +206,7 @@ site
 # Created by coverage.py
 htmlcov/**/*
 fly.toml
+
+# Project Stuff
+database.db
+osrm_data/
