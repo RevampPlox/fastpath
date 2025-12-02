@@ -1,8 +1,10 @@
 from typing import Annotated
 from uuid import UUID
 
+import httpx
 from fastapi import Depends
 
+from app.core.settings import settings
 from app.exceptions.erros import NotFoundError
 from app.repositories.path_repository import PathRepository
 from app.schemas.filters_params_schema import SortEnum
@@ -37,6 +39,16 @@ class PathService:
         return PathResponse.model_validate(db_path)
 
     async def create_path(self, path: PathCreate) -> PathResponse:
+        base_url = settings.OSRM_URL + 'table/v1/driving/'
+        coords = [f'{path.pickup.lng},{path.pickup.lat}']
+        coords.extend(f'{coord.lng},{coord.lat}' for coord in path.dropoff)
+        coords_url = ';'.join(coords)
+        async with httpx.AsyncClient() as client:
+            response = await client.get(
+                url=f'{base_url}{coords_url}',
+                params={'annotations': 'duration,distance'},
+            )
+            response.raise_for_status()
         db_path = await self.repository.create(path.model_dump())
         return PathResponse.model_validate(db_path)
 
