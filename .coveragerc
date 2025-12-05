@@ -1,5 +1,7 @@
 [run]
-concurrency = greenlet
+branch = True
+concurrency = greenlet, thread
+parallel = True
 
 [report]
 skip_covered = True

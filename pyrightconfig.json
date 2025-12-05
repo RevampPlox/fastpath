@@ -8,6 +8,10 @@
         "**/__pycache__",
         "htmlcov/",
         "app/migrations",
+        ".coveragerc",
+    ],
+    "ignore": [
+        ".coveragerc"
     ],
     "pythonVersion": "3.13",
     "venvPath": ".",
