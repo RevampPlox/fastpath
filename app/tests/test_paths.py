@@ -3,7 +3,7 @@ from http import HTTPStatus
 import pytest
 from fastapi.testclient import TestClient
 from respx import Route
-from uuid6 import uuid6
+from uuid6 import uuid7
 
 from app.models.path_model import PathModel
 from app.schemas.path_schema import PathResponse
@@ -68,7 +68,7 @@ class TestPaths:
     def test_get_one_path_should_return_not_found(
         self, client: TestClient
     ) -> None:
-        response = client.get(f'{self.BASE_URI}/{uuid6()}')
+        response = client.get(f'{self.BASE_URI}/{uuid7()}')
 
         assert response.status_code == HTTPStatus.NOT_FOUND
 
@@ -83,6 +83,6 @@ class TestPaths:
     def test_should_return_not_found_when_delete_no_existis_path(
         self, client: TestClient
     ) -> None:
-        response = client.delete(f'{self.BASE_URI}/{uuid6()}')
+        response = client.delete(f'{self.BASE_URI}/{uuid7()}')
 
         assert response.status_code == HTTPStatus.NOT_FOUND
