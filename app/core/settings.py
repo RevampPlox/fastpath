@@ -16,6 +16,7 @@ class __Settings(BaseSettings):
         'postgresql+psycopg://user:password@127.0.0.1:5432/database',
     )
     OSRM_URL: str = os.getenv('OSRM_URL', 'http://localhost:5000/')
+    API_URL: str = os.getenv('API_URL', 'http://localhost:8000/')
 
 
 @lru_cache
