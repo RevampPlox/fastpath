@@ -2,7 +2,6 @@ from http import HTTPStatus
 
 import pytest
 from fastapi.testclient import TestClient
-from respx import Route
 from uuid6 import uuid7
 
 from app.models.path_model import PathModel
@@ -12,11 +11,11 @@ from app.schemas.path_schema import PathResponse
 class TestPaths:
     BASE_URI = '/api/v1/paths'
 
+    @pytest.mark.usefixtures('osrm_response')
     def test_create_path_sucessful(
         self,
         client: TestClient,
         path_request: dict,
-        osrm_response: Route,  # noqa: ARG002
     ) -> None:
         response = client.post(self.BASE_URI, json=path_request)
         data = response.json()

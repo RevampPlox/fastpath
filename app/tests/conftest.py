@@ -4,6 +4,7 @@ from typing import Any
 
 import pytest
 import pytest_asyncio
+from _pytest.monkeypatch import MonkeyPatch
 from fastapi.testclient import TestClient
 from httpx import Response
 from respx import MockRouter, Route
@@ -99,3 +100,9 @@ async def path(session: AsyncSession) -> PathModel:
     await session.commit()
     await session.refresh(new_path)
     return new_path
+
+
+@pytest.fixture
+def prod_settings(monkeypatch: MonkeyPatch) -> MonkeyPatch:
+    monkeypatch.setattr(settings, 'DEBUG', False)
+    return monkeypatch
